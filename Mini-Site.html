@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Othman — Liens</title>
+  <meta name="description" content="Mini-site professionnel — LinkedIn, Portfolio, GitHub, Instagram, Contact">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --bg: #0f1724; /* deep navy */
+      --card: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
+      --accent: #4f46e5; /* indigo */
+      --muted: rgba(255,255,255,0.7);
+      --radius: 16px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#071226 0%, var(--bg) 100%);
+      display:flex;align-items:center;justify-content:center;padding:32px;color:var(--muted);
+      overflow-x: hidden;
+    }
+
+    /* Animation d'entrée */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .wrap{
+      width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:20px;padding:28px;display:grid;grid-template-columns:260px 1fr;gap:24px;box-shadow:0 8px 30px rgba(2,6,23,0.6);
+      backdrop-filter: blur(8px);
+      animation: fadeInUp 0.6s ease-out;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* Left column */
+    .left{display:flex;flex-direction:column;align-items:center;padding:12px}
+    .avatar{
+      width:156px;height:156px;border-radius:20px;overflow:hidden;border:2px solid rgba(255,255,255,0.06);box-shadow:0 6px 18px rgba(79,70,229,0.12);
+      background:linear-gradient(135deg, rgba(79,70,229,0.12), rgba(59,130,246,0.05));
+      display:flex;align-items:center;justify-content:center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(79,70,229,0.2);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block;transition: transform 0.3s ease;}
+    .avatar:hover img {
+      transform: scale(1.1);
+    }
+    h1{font-size:20px;margin:14px 0 6px;color:white;font-weight: 700;letter-spacing: -0.5px;}
+    p.role{margin:0;font-size:13px;color:rgba(255,255,255,0.6);font-weight: 400;}
+
+    .socials{margin-top:16px;display:flex;gap:10px}
+    .socials a{
+      display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:var(--glass);text-decoration:none;color:var(--muted);font-size:16px;border:1px solid rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .socials a:hover {
+      background: rgba(79,70,229,0.15);
+      border-color: rgba(79,70,229,0.3);
+      transform: translateY(-3px);
+      color: white;
+      box-shadow: 0 4px 12px rgba(79,70,229,0.2);
+    }
+    .socials a:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Right column */
+    .content{padding:6px 8px}
+    .card-links{display:grid;gap:12px}
+    .link-item{
+      display:flex;align-items:center;justify-content:space-between;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .link-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      transition: left 0.5s ease;
+    }
+    .link-item:hover::before {
+      left: 100%;
+    }
+    .link-item:hover{
+      transform:translateY(-6px);
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      border-color: rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015));
+    }
+    .link-item:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .link-item:active {
+      transform: translateY(-2px);
+    }
+    
+    /* Couleurs spécifiques pour chaque lien */
+    .link-item[href*="linkedin"]:hover {
+      border-color: rgba(10, 102, 194, 0.3);
+      box-shadow: 0 10px 30px rgba(10, 102, 194, 0.2);
+    }
+    .link-item[href*="linkedin"] .icon {
+      background: linear-gradient(135deg, rgba(10, 102, 194, 0.15), rgba(10, 102, 194, 0.05));
+    }
+    
+    .link-item[href*="pythonanywhere"]:hover,
+    .link-item[href*="portfolio"]:hover {
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+    .link-item[href*="pythonanywhere"] .icon,
+    .link-item[href*="portfolio"] .icon {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    }
+    
+    .link-item[href*="github"]:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    }
+    .link-item[href*="github"] .icon {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    }
+    
+    .link-item[href*="instagram"]:hover {
+      border-color: rgba(225, 48, 108, 0.3);
+      box-shadow: 0 10px 30px rgba(225, 48, 108, 0.2);
+    }
+    .link-item[href*="instagram"] .icon {
+      background: linear-gradient(135deg, rgba(225, 48, 108, 0.15), rgba(225, 48, 108, 0.05));
+    }
+    
+    .link-left{display:flex;align-items:center;gap:12px}
+    .link-left .icon{
+      width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg, rgba(79,70,229,0.12), rgba(59,130,246,0.04));font-size:18px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .link-item:hover .icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    .link-left .meta{display:flex;flex-direction:column}
+    .link-left .meta .title{font-weight:600;color:white;transition: color 0.3s ease;}
+    .link-item:hover .link-left .meta .title {
+      color: rgba(255,255,255,0.95);
+    }
+    .link-left .meta .subtitle{font-size:13px;color:rgba(255,255,255,0.6);transition: color 0.3s ease;}
+    .link-item:hover .link-left .meta .subtitle {
+      color: rgba(255,255,255,0.75);
+    }
+
+    .cta{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#2563eb);color:white;text-decoration:none;font-weight:600;
+      transition: all 0.3s ease;
+      font-size: 13px;
+    }
+    .link-item:hover .cta {
+      background: linear-gradient(90deg, #5b52f0, #3b82f6);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+    }
+
+    .contact-block{
+      margin-top:18px;padding:18px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+    }
+    .contact-block:hover {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.05);
+    }
+    .contact-row{
+      display:flex;align-items:center;gap:12px;margin-bottom:10px;
+      transition: transform 0.2s ease;
+    }
+    .contact-row:hover {
+      transform: translateX(4px);
+    }
+    .contact-row a{
+      color:var(--muted);text-decoration:none;
+      transition: color 0.3s ease;
+    }
+    .contact-row a:hover {
+      color: white;
+    }
+    .contact-row i {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .contact-row:hover i {
+      transform: scale(1.1);
+      color: var(--accent);
+    }
+
+    /* Footer small */
+    .small{font-size:13px;color:rgba(255,255,255,0.5);margin-top:12px;line-height: 1.6;}
+
+    /* Responsive */
+    @media (max-width:780px){
+      body {
+        padding: 16px;
+      }
+      .wrap{grid-template-columns:1fr;max-width:420px;padding:20px;gap: 20px;}
+      .left{flex-direction:row;gap:12px;align-items:center;justify-content: center;}
+      .avatar{width:84px;height:84px}
+      .socials{margin-top:8px}
+      h1 {
+        font-size: 18px;
+      }
+      .link-item {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width:480px) {
+      .wrap {
+        padding: 16px;
+      }
+      .link-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .cta {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <aside class="left" aria-label="profil">
+      <div class="avatar" aria-hidden="true">
+        <!-- Remplacez la source par votre photo -->
+        <img src="https://i.pinimg.com/736x/fd/ae/8b/fdae8b428a0e7a6794c865c0c7bece11.jpg" alt="Photo de profil">
+      </div>
+      <div style="text-align:center;margin-top:10px">
+        <h1>Othman A.</h1>
+        <p class="role">Developpeur Full Stack Web & Mobile</p>
+        <div class="socials" aria-label="Réseaux sociaux">
+          <a href="#" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" title="Portfolio" aria-label="Portfolio"><i class="fa-solid fa-globe"></i></a>
+          <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="card-links" aria-label="Liens principaux">
+
+        <a class="link-item" href="https://www.linkedin.com/in/othman-ait-taleb-074199368/" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="icon"><i class="fab fa-linkedin-in"></i></div>
+            <div class="meta">
+              <div class="title">LinkedIn</div>
+              <div class="subtitle">Mon profil professionnel</div>
+            </div>
+          </div>
+          <div><span class="cta">Voir</span></div>
+        </a>
+
+        <a class="link-item" href="https://aittaleb.pythonanywhere.com/" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="meta">
+              <div class="title">Portfolio</div>
+              <div class="subtitle">Projets & réalisations</div>
+            </div>
+          </div>
+          <div><span class="cta">Voir</span></div>
+        </a>
+
+        <a class="link-item" href="https://github.com/othmanaittaleb23-ship-it" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="icon"><i class="fab fa-github"></i></div>
+            <div class="meta">
+              <div class="title">GitHub</div>
+              <div class="subtitle">Code & dépôts</div>
+            </div>
+          </div>
+          <div><span class="cta">Voir</span></div>
+        </a>
+
+        <a class="link-item" href="https://www.instagram.com/3tttman.at?igsh=MW50N2s2anZwc2FuZQ==" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="icon"><i class="fab fa-instagram"></i></div>
+            <div class="meta">
+              <div class="title">Instagram</div>
+              <div class="subtitle">Visuels & coulisses</div>
+            </div>
+          </div>
+          <div><span class="cta">Voir</span></div>
+        </a>
+
+      </div>
+
+      <div class="contact-block" aria-label="Contact">
+        <div class="contact-row"><i class="fa-solid fa-phone" style="width:18px;text-align:center"></i><a href="tel:+212643481344">+212 6 43 48 13 44</a></div>
+        <div class="contact-row"><i class="fa-solid fa-envelope" style="width:18px;text-align:center"></i><a href="mailto:othmanaittaleb23@gmail.com">othmanaittaleb23@gmail.com</a></div>
+
+        <div class="small">Ravi de vous accueillir ! Voici un accès rapide à mes réseaux et projets. </div>
+        <div class="small" style="margin-top:12px; font-size:14px; color:rgba(255,255,255,0.6);">
+          “Toujours en apprentissage. Toujours en mouvement.”
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Optional: small script to replace placeholder icons for accessibility or add copy-to-clipboard -->
+  <script>
+    // Example: replace image with initials if image fails
+    document.querySelectorAll('.avatar img').forEach(img => {
+      img.addEventListener('error', () => {
+        img.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
