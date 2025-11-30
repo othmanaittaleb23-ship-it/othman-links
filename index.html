@@ -170,6 +170,16 @@
       background: linear-gradient(135deg, rgba(225, 48, 108, 0.15), rgba(225, 48, 108, 0.05));
     }
     
+    .link-item[href*="CV_PFE_Ait_taleb.pdf"]:hover,
+    .link-item[download]:hover {
+      border-color: rgba(220, 38, 38, 0.3);
+      box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+    }
+    .link-item[href*="CV_PFE_Ait_taleb.pdf"] .icon,
+    .link-item[download] .icon {
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(220, 38, 38, 0.05));
+    }
+    
     .link-left{display:flex;align-items:center;gap:12px}
     .link-left .icon{
       width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
@@ -649,6 +659,17 @@
             </div>
           </div>
           <div><span class="cta">Voir</span></div>
+        </a>
+
+        <a class="link-item" href="CV_PFE_Ait_taleb.pdf" download="CV_PFE_Ait_taleb.pdf">
+          <div class="link-left">
+            <div class="icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <div class="meta">
+              <div class="title">Télécharger mon CV</div>
+              <div class="subtitle">Format PDF</div>
+            </div>
+          </div>
+          <div><span class="cta">Télécharger</span></div>
         </a>
 
       </div>
